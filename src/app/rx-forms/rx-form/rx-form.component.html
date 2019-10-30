@@ -1,0 +1,16 @@
+<h2>Reactive forms</h2>
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+    <p>{{ studentForm.value | json}}</p>
+    <p>First name:
+        <mat-form-field>
+            <input matInput type="text" formControlName="firstname" />
+        </mat-form-field>
+    </p>
+    <p>Last name:
+        <mat-form-field>
+            <input matInput type="text" formControlName="lastname" />
+        </mat-form-field>
+    </p>
+    <p><button mat-raised-button color="primary" type="submit"
+            [disabled]="!studentForm.valid || submitted">Submit</button></p>
+</form>

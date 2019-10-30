@@ -1,0 +1,19 @@
+<h2>Template driven forms</h2>
+<form #studentForm="ngForm" (ngSubmit)="onSubmit()">
+    <p>{{ model | json}}</p>
+    <p>
+        <mat-form-field>
+            <input matInput placeholder="First name" type="text" required minlength="2" [(ngModel)]="model.firstname"
+                name="firstname" />
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <input matInput placeholder="Last name" type="text" required [(ngModel)]="model.lastname" name="lastname"
+                #lastnamecontrol />
+        </mat-form-field>
+    </p>
+    <p>Control state: {{lastnamecontrol.className}}</p>
+    <p><button mat-raised-button color="primary" type="submit"
+            [disabled]="!studentForm.form.valid || submitted">Submit</button></p>
+</form>

@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ActuaPollsFrontend'`, () => {
+  it(`should have as title 'HelloWorldAngular'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('ActuaPollsFrontend');
+    expect(app.title).toEqual('HelloWorldAngular');
   });
 
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to ActuaPollsFrontend!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to HelloWorldAngular!');
   });
 });

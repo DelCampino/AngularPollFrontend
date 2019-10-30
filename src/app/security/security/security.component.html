@@ -1,0 +1,16 @@
+<h2>Login</h2>
+<form #studentForm="ngForm" (ngSubmit)="onSubmit()">
+    <p>{{ model | json}}</p>
+    <p>
+        <mat-form-field>
+            <input matInput placeholder="First name" type="text" required minlength="2" [(ngModel)]="model.username" name="username" />
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <input matInput placeholder="Last name" type="text" required [(ngModel)]="model.password" name="password"/>
+        </mat-form-field>
+    </p>
+    <p><button mat-raised-button color="primary" type="submit"
+            [disabled]="!studentForm.form.valid || submitted">Submit</button></p>
+</form>
