@@ -1,0 +1,21 @@
+@font-face {
+    font-family: lato;
+    src: url(/src/assets/Roboto-Black.ttf) format("opentype");
+  }
+
+.logo {
+    padding-left: 16px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+mat-sidenav {
+    width: 15%;
+    overflow: hidden;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
