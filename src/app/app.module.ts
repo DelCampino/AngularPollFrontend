@@ -6,56 +6,34 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { MatSidenavModule, MatListModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { HelpComponent } from './help/help.component';
-import { ContactComponent } from './contact/contact.component';
-import { HomeComponent } from './home/home.component';
-import { MembersModule } from './members/members.module';
-import { FlexboxComponent } from './flexbox/flexbox.component';
-import { BgridComponent } from './bgrid/bgrid.component';
-import { TdFormsModule } from './td-forms/td-forms.module';
-import { TdFormComponent } from './td-forms/td-form/td-form.component';
+import { LoginComponent } from './security/login/login.component';
 import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
-import { RxFormsModule } from './rx-forms/rx-forms.module';
-import { RxFormComponent } from './rx-forms/rx-form/rx-form.component';
-import { SecurityComponent } from './security/security/security.component';
-import { SecurityModule } from './security/security.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SecurityInterceptor } from './security/security/interceptor.service';
+import { RegisterComponent } from './security/register/register.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'help', component: HelpComponent },
-  { path: 'flex', component: FlexboxComponent },
-  { path: 'bgrid', component: BgridComponent },
-  { path: 'tdforms', component: TdFormComponent },
-  { path: 'rxforms', component: RxFormComponent },
-  { path: 'security', component: SecurityComponent }
+  { path: '', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    HomeComponent,
-    ContactComponent,
-    HelpComponent,
-    FlexboxComponent,
-    BgridComponent,
+    LoginComponent,
+    RegisterComponent
 
   ],
   imports: [
+    NgbModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    MembersModule,
-    TdFormsModule,
-    RxFormsModule,
-    SecurityModule,
     BrowserAnimationsModule,
     MatSidenavModule,
     MatListModule,
@@ -64,12 +42,11 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule 
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: SecurityInterceptor,
-    multi: true
-    }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

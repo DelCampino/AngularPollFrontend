@@ -7,31 +7,9 @@
         </div>
 
         <a mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-
-        <a mat-list-item routerLink="/contact" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">Contact</a>
-
-        <a mat-list-item routerLink="/help" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">Help</a>
-
-        <a mat-list-item routerLink="/flex" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">Flex</a>
-
-        <a mat-list-item routerLink="/bgrid" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">Bgrid</a>
-
-        <a mat-list-item routerLink="/tdforms" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">Tdforms</a>
-
-        <a mat-list-item routerLink="/rxforms" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">Rxforms</a>
-
-        <a mat-list-item routerLink="/security" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">Security</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <app-members></app-members>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

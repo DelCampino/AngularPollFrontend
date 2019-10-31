@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SecurityComponent } from './security/security.component';
 import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
-
-
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [SecurityComponent],
+  declarations: [LoginComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,

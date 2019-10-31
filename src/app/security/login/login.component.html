@@ -1,0 +1,25 @@
+<div class=containertest>
+    <div class="containerLogin">
+        <h2 class="headerLogin">
+            <fa-icon class="icon" [icon]="faKey"></fa-icon>Login
+        </h2>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+            <p>
+                <mat-form-field>
+                    <input matInput placeholder="Username" type="text" required minlength="2"
+                        [(ngModel)]="model.username" name="username" />
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <input matInput placeholder="Password" type="text" required [(ngModel)]="model.password"
+                        name="password" />
+                </mat-form-field>
+            </p>
+            <p><button mat-raised-button class="buttonLogin" color="primary" type="submit"
+                    [disabled]="!loginForm.form.valid || submitted">Enter</button></p>
+        </form>
+        <p><button routerLink="/register" routerLinkActive="active" mat-raised-button class="buttonLogin" color="primary">Register</button></p>
+
+    </div>
+</div>

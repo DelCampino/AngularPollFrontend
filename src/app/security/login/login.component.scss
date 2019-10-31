@@ -1,0 +1,30 @@
+.containerLogin {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px;
+    padding-left: 150px;
+    padding-right: 150px;
+    display: inline-block;
+    box-shadow: black 2px 2px 2px;
+}
+
+.buttonLogin {
+    width: 100%;
+}
+
+.icon {
+    padding-right: 10px;
+}
+
+.headerLogin {
+    text-align: center;
+}
+
+.containertest {
+    background-image: url("src/assets/wallpaper3.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

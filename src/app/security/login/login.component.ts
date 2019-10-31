@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticateService } from '../authenticate.service';
 import { UserLogin } from '../models/user-login.model';
+import { faKey } from '@fortawesome/free-solid-svg-icons';
+import { ValidatorFn, ValidationErrors, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-security',
-  templateUrl: './security.component.html',
-  styleUrls: ['./security.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class SecurityComponent implements OnInit {
+
+export class LoginComponent implements OnInit {
   model : UserLogin = new UserLogin('','');
   submitted : boolean = false;
-
+  faKey = faKey;
   constructor(private _authenticateService : AuthenticateService) { }
 
   ngOnInit() {
@@ -23,4 +26,9 @@ export class SecurityComponent implements OnInit {
     });
   }
 
+}
+
+export const passwordMatchValidator: ValidatorFn = (formGroup: FormGroup): ValidationErrors | null => {
+  return formGroup.get('password').value === formGroup.get('password2').value ?
+    null : { 'passwordMismatch': true };
 }
