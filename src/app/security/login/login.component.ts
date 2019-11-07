@@ -16,13 +16,13 @@ export class LoginComponent implements OnInit {
   faKey = faKey;
   faExclamationTriangle = faExclamationTriangle;
   invalidLogin = false;
-  
+  validUser = false;
+
   constructor(private _authenticateService: AuthenticateService) { }
 
   ngOnInit() {
-    if (this._authenticateService.getToken() == null) {
-
-    };
+    this.validUser = this._authenticateService.isLoggedIn();
+    console.log(this.validUser);
   }
 
   onSubmit(form: NgForm) {
@@ -32,13 +32,20 @@ export class LoginComponent implements OnInit {
       result => {
         this.invalidLogin = false;
         this._authenticateService.setToken(result.token);
+        this.validUser = this._authenticateService.isLoggedIn();
       },
-      HttpErrorResponse => {
+      error => {
         this.invalidLogin = true;
-        console.log(this.invalidLogin)
         this.submitted = false;
       }
     );
   }
 
+  logout() {
+    this._authenticateService.logout();
+    this.validUser = this._authenticateService.isLoggedIn();
+    this.submitted = false;
+  }
+
+  
 }

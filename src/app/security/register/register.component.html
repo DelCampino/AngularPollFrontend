@@ -7,7 +7,7 @@
             [mustMatch]="['password', 'confirmPassword']" novalidate>
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Username" type="text" class="form-control" name="username"
+                    <input matInput placeholder="Username" type="text" name="username"
                         [(ngModel)]="model.username" #username="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && username.invalid }" required />
                 </mat-form-field>
@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Email-adress" type="email" class="form-control" name="email"
+                    <input matInput placeholder="Email-adress" type="email" name="email"
                         [(ngModel)]="model.email" #email="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required />
                 </mat-form-field>
@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Password" type="password" class="form-control" name="password"
+                    <input matInput placeholder="Password" type="password" name="password"
                         [(ngModel)]="model.password" #password="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6" />
                 </mat-form-field>
@@ -47,7 +47,7 @@
             </div>
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Confirm password" type="password" class="form-control"
+                    <input matInput placeholder="Confirm password" type="password"
                         name="confirmPassword" [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }" required />
                 </mat-form-field>
@@ -59,9 +59,15 @@
                         <fa-icon class="icon" [icon]="faExclamationTriangle"></fa-icon>Passwords do not match.
                     </div>
                 </div>
+                <div class="warning" *ngIf="takenUsername">
+                    <fa-icon class="icon" [icon]="faExclamationTriangle"></fa-icon>Username already in use.
+                </div>
+                <div class="warning" *ngIf="takenEmail">
+                    <fa-icon class="icon" [icon]="faExclamationTriangle"></fa-icon>Email already in use.
+                </div>
             </div>
             <p><button mat-raised-button class="buttonLogin" color="primary" type="submit"
-                    [disabled]="submitted">Enter</button></p>
+                    [disabled]="submitted">Register</button></p>
         </form>
     </div>
 </div>

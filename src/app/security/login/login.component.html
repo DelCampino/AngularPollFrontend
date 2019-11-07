@@ -1,13 +1,12 @@
 <div class=containertest>
-    <div class="containerLogin">
+    <div class="containerLogin" *ngIf="!validUser">
         <h2 class="headerLogin">
             <fa-icon class="icon" [icon]="faKey"></fa-icon>Login
         </h2>
         <form #loginForm="ngForm" (ngSubmit)="onSubmit()" name="loginForm" #f="ngForm">
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Email" type="email" required [(ngModel)]="model.email"
-                        name="email" />
+                    <input matInput placeholder="Email" type="email" required [(ngModel)]="model.email" name="email" />
                 </mat-form-field>
             </div>
             <div class="form-group">
@@ -24,6 +23,11 @@
         </form>
         <p><button routerLink="/register" routerLinkActive="active" mat-raised-button class="buttonLogin"
                 color="primary">Register</button></p>
-
+    </div>
+    <div class="containerLogin" *ngIf="validUser">
+        <h2 class="text-center">Welcome</h2>
+        <form #logoutForm="ngForm" (ngSubmit)="logout()" name="logoutForm" #f="ngForm">
+            <p><button mat-raised-button class="buttonLogin" color="primary" type="submit">Logout</button></p>
+        </form>
     </div>
 </div>

@@ -8,18 +8,6 @@
     box-shadow: black 2px 2px 2px;
 }
 
-.warning {
-    padding: 10px;
-    background: #f8d7da;
-    border: #f5c6cb 2px solid;
-    border-radius: 3px;
-    color: #721c24;;
-}
-
-.mat-form-field.mat-form-field-invalid .mat-form-field-label {
-    color: black !important;
-}
-
 mat-form-field{
     width: 100%;
 }
@@ -44,4 +32,13 @@ mat-form-field{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+h2  {
+    font-size: 24px;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
 }

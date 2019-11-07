@@ -16,10 +16,13 @@ import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/ma
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './security/register/register.component';
 import { MustMatchDirective } from './security/must-match.directive';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './security/guards/auth.guard';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -27,7 +30,8 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    MustMatchDirective
+    MustMatchDirective,
+    DashboardComponent
 
   ],
   imports: [
