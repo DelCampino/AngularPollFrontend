@@ -1,10 +1,27 @@
 .containerLogin {
     background: rgba(255, 255, 255, 0.95);
     padding: 15px;
-    padding-left: 150px;
-    padding-right: 150px;
+    padding-left: 50px;
+    padding-right: 50px;
+    min-width: 30%;
     display: inline-block;
     box-shadow: black 2px 2px 2px;
+}
+
+.warning {
+    padding: 10px;
+    background: #f8d7da;
+    border: #f5c6cb 2px solid;
+    border-radius: 3px;
+    color: #721c24;;
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    color: black !important;
+}
+
+mat-form-field{
+    width: 100%;
 }
 
 .buttonLogin {

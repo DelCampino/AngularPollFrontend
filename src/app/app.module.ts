@@ -7,7 +7,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatSidenavModule, MatListModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -16,6 +15,7 @@ import { LoginComponent } from './security/login/login.component';
 import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './security/register/register.component';
+import { MustMatchDirective } from './security/must-match.directive';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -26,11 +26,11 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MustMatchDirective
 
   ],
   imports: [
-    NgbModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,

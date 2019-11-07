@@ -3,23 +3,27 @@
         <h2 class="headerLogin">
             <fa-icon class="icon" [icon]="faKey"></fa-icon>Login
         </h2>
-        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
-            <p>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()" name="loginForm" #f="ngForm">
+            <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Username" type="text" required minlength="2"
-                        [(ngModel)]="model.username" name="username" />
+                    <input matInput placeholder="Email" type="email" required [(ngModel)]="model.email"
+                        name="email" />
                 </mat-form-field>
-            </p>
-            <p>
+            </div>
+            <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Password" type="text" required [(ngModel)]="model.password"
+                    <input matInput placeholder="Password" type="password" required [(ngModel)]="model.password"
                         name="password" />
                 </mat-form-field>
-            </p>
+            </div>
+            <div class="warning" *ngIf="invalidLogin">
+                <fa-icon class="icon" [icon]="faExclamationTriangle"></fa-icon>Email or password not recognized.
+            </div>
             <p><button mat-raised-button class="buttonLogin" color="primary" type="submit"
                     [disabled]="!loginForm.form.valid || submitted">Enter</button></p>
         </form>
-        <p><button routerLink="/register" routerLinkActive="active" mat-raised-button class="buttonLogin" color="primary">Register</button></p>
+        <p><button routerLink="/register" routerLinkActive="active" mat-raised-button class="buttonLogin"
+                color="primary">Register</button></p>
 
     </div>
 </div>

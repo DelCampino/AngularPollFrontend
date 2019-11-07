@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { faKey } from '@fortawesome/free-solid-svg-icons';
-import { UserLogin } from '../models/user-login.model';
+import { faKey, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { AuthenticateService } from '../authenticate.service';
 import { ValidatorFn, FormGroup, ValidationErrors } from '@angular/forms';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-register',
@@ -10,9 +10,10 @@ import { ValidatorFn, FormGroup, ValidationErrors } from '@angular/forms';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  model : UserLogin = new UserLogin('','');
+  model : User = new User(null,'', '', '', '');
   submitted : boolean = false;
   faKey = faKey;
+  faExclamationTriangle = faExclamationTriangle;
   constructor(private _authenticateService : AuthenticateService) { }
 
   ngOnInit() {
@@ -20,9 +21,33 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this._authenticateService.authenticate(this.model).subscribe(result => {
-    localStorage.setItem("token",result.token);
+    this._authenticateService.register(this.model).subscribe(result => {
+    
     });
   }
 
+}
+
+export function MustMatch(controlName: string, matchingControlName: string) {
+  return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+
+      // return null if controls haven't initialised yet
+      if (!control || !matchingControl) {
+        return null;
+      }
+
+      // return null if another validator has already found an error on the matchingControl
+      if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+          return null;
+      }
+
+      // set error on matchingControl if validation fails
+      if (control.value !== matchingControl.value) {
+          matchingControl.setErrors({ mustMatch: true });
+      } else {
+          matchingControl.setErrors(null);
+      }
+    }
 }
