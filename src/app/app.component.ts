@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthenticateService } from './security/authenticate.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'HelloWorldAngular';
+  username = "";
+
+  constructor (private _authenticateService : AuthenticateService) {
+    this._authenticateService.checkUser();
+    //this._authenticateService.logout();; *DEV MODE*
+    this._authenticateService.isLoggedin.subscribe(e=> {
+      this.username = localStorage.getItem("username");
+      })
+  };
+
 }

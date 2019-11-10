@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticateService } from '../security/authenticate.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  submitted = false;
 
-  constructor() { }
+  constructor(private _authenticateService: AuthenticateService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this._authenticateService.logout();
+    this.submitted = false;
+    this.router.navigate(['/']);
   }
 
 }

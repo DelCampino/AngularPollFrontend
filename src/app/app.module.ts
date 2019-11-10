@@ -18,11 +18,12 @@ import { RegisterComponent } from './security/register/register.component';
 import { MustMatchDirective } from './security/must-match.directive';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './security/guards/auth.guard';
+import { InterceptorService } from './security/interceptor.service';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]}
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -48,9 +49,13 @@ const appRoutes: Routes = [
     MatButtonModule,
     FontAwesomeModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

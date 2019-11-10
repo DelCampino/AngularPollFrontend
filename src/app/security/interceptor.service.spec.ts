@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LoggerService } from './logger-service.service';
+import { InterceptorService } from './interceptor.service';
 
-describe('LoggerServiceService', () => {
+describe('InterceptorService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: LoggerService = TestBed.get(LoggerService);
+    const service: InterceptorService = TestBed.get(InterceptorService);
     expect(service).toBeTruthy();
   });
 });

@@ -5,6 +5,8 @@
         <div>
           <img src="assets/ActuaPolls.svg" class="logo" />
         </div>
+        <a mat-list-item *ngIf="username" class="font-weight-bold">Welcome, {{this.username}}</a>
+        <hr>
         <a mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
         <a mat-list-item routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
       </mat-nav-list>
