@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["dashboard"])
       },
       error => {
+        console.log(error);
         if (error.error.message == "Email or password is incorrect") {
           this.invalidLogin = true;
           this.submitted = false;

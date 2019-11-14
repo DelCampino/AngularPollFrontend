@@ -16,7 +16,7 @@ import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/ma
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './security/register/register.component';
 import { MustMatchDirective } from './security/must-match.directive';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { AuthGuard } from './security/guards/auth.guard';
 import { InterceptorService } from './security/interceptor.service';
 

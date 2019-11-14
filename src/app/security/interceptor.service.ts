@@ -21,9 +21,6 @@ export class InterceptorService implements HttpInterceptor {
           this._router.navigate(['']);
           return throwError("unauthorized");
         }
-        if (err.status === 400) {
-          return throwError("test");
-        }
         return throwError(err);
       }));
   }
