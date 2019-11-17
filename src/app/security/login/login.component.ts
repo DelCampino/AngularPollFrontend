@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticateService } from '../authenticate.service';
+import { AuthenticateService } from '../../authenticate.service';
 import { UserLogin } from '../models/user-login.model';
 import { faKey, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { ValidatorFn, ValidationErrors, FormGroup, NgForm } from '@angular/forms';

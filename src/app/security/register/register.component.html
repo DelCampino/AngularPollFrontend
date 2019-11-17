@@ -7,9 +7,8 @@
             [mustMatch]="['password', 'confirmPassword']" novalidate>
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Username" type="text" name="username"
-                        [(ngModel)]="model.username" #username="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && username.invalid }" required />
+                    <input matInput placeholder="Username" type="text" name="username" [(ngModel)]="model.username"
+                        #username="ngModel" [ngClass]="{ 'is-invalid': f.submitted && username.invalid }" required />
                 </mat-form-field>
                 <div *ngIf="f.submitted && username.invalid" class="invalid-feedback">
                     <div class="warning" *ngIf="username.errors.required">
@@ -19,9 +18,8 @@
             </div>
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Email-adress" type="email" name="email"
-                        [(ngModel)]="model.email" #email="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required />
+                    <input matInput placeholder="Email-adress" type="email" name="email" [(ngModel)]="model.email"
+                        #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required />
                 </mat-form-field>
                 <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
                     <div class="warning" *ngIf="email.errors.required">
@@ -31,9 +29,9 @@
             </div>
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Password" type="password" name="password"
-                        [(ngModel)]="model.password" #password="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6" />
+                    <input matInput placeholder="Password" type="password" name="password" [(ngModel)]="model.password"
+                        #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required
+                        minlength="6" />
                 </mat-form-field>
                 <div class="warning" *ngIf="f.submitted && password.invalid" class="invalid-feedback">
                     <div class="warning" *ngIf="password.errors.required">
@@ -47,8 +45,8 @@
             </div>
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Confirm password" type="password"
-                        name="confirmPassword" [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel"
+                    <input matInput placeholder="Confirm password" type="password" name="confirmPassword"
+                        [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }" required />
                 </mat-form-field>
                 <div *ngIf="f.submitted && confirmPassword.invalid" class="invalid-feedback">

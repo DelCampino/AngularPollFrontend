@@ -15,4 +15,10 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  logout() {
+    this._authenticateService.logout();
+    this.submitted = false;
+    this.router.navigate(['/']);
+  }
+
 }

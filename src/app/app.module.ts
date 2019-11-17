@@ -18,7 +18,8 @@ import { RegisterComponent } from './security/register/register.component';
 import { MustMatchDirective } from './security/must-match.directive';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { AuthGuard } from './security/guards/auth.guard';
-import { InterceptorService } from './security/interceptor.service';
+import { InterceptorService } from './interceptor.service';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -32,7 +33,6 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     MustMatchDirective,
-    DashboardComponent
 
   ],
   imports: [
@@ -49,7 +49,8 @@ const appRoutes: Routes = [
     MatButtonModule,
     FontAwesomeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DashboardModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

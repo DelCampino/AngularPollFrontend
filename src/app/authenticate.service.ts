@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from './models/user.model';
-import { UserLogin } from './models/user-login.model';
-import { UserRegister } from './models/user-register.model';
+import { User } from './security/models/user.model';
+import { UserLogin } from './security/models/user-login.model';
+import { UserRegister } from './security/models/user-register.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -13,8 +13,11 @@ export class AuthenticateService {
   setUser(result: User) {
     localStorage.setItem("token", result.token);
     localStorage.setItem("username", result.username);
+    localStorage.setItem("email", result.email);
+    localStorage.setItem("userID", result.userID + "");
   }
   constructor(private _httpClient: HttpClient) { }
+
   authenticate(userLogin: UserLogin): Observable<User> {
     return this._httpClient.post<User>("https://localhost:5001/api/User/authenticate", userLogin);
   }
@@ -32,6 +35,8 @@ export class AuthenticateService {
   logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+    localStorage.removeItem("userID");
+    localStorage.removeItem("email");
     this.isLoggedin.next(false);
   }
   
@@ -40,7 +45,7 @@ export class AuthenticateService {
   }
 
   checkUser() {
-    if (localStorage.getItem("token") && localStorage.getItem("username")) {
+    if (localStorage.getItem("token") && localStorage.getItem("username") && localStorage.getItem("userID") && localStorage.getItem("email")) {
       this.isLoggedin.next(true);
     } else {
       this.isLoggedin.next(false);

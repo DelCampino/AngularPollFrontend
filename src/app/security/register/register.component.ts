@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faKey, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import { AuthenticateService } from '../authenticate.service';
+import { AuthenticateService } from '../../authenticate.service';
 import { ValidatorFn, FormGroup, ValidationErrors } from '@angular/forms';
 import { UserRegister } from '../models/user-register.model';
-import { ok } from 'assert';
-import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({

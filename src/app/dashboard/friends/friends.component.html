@@ -1,3 +1,71 @@
-<div class="card-body">
-    This works!
+<div class="card">
+  <div class="col">
+    <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-users-list" data-toggle="list"
+        href="#list-users" role="tab" aria-controls="home">Friends</a>
+      <a class="list-group-item list-group-item-action" id="list-requests-list" data-toggle="list" href="#list-requests"
+        role="tab" aria-controls="profile">Requests<span *ngIf="requestCount"
+          class="badge badge-primary badge-pill">{{ requestCount }}</span></a>
+    </div>
   </div>
+  <div class="col-10 friendRequests">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="list-users" role="tabpanel" aria-labelledby="list-users-list">
+        <li class="list-group-item" *ngFor="let x of (friends | async)">
+          <div class="row userRequest">
+            <div class="col">
+              <span>{{x.user.username}}</span>
+            </div>
+          </div>
+        </li>
+      </div>
+      <div class="tab-pane fade" id="list-requests" role="tabpanel" aria-labelledby="list-requests-list">
+        <form #friendRequestForm="ngForm" (ngSubmit)="addFriend()" name="friendRequestForm" #f="ngForm">
+          <div class="form-group addUserForm ">
+            <div class="form-row">
+              <div class="col-10">
+                <input type="email" class="form-control" id="exampleInputEmail1" required [(ngModel)]="model.email"
+                  placeholder="Enter email" name="email">
+                <small *ngIf="notSelf" id="emailHelp" class="form-text text-muted">You cannot add yourself as
+                  friend.</small>
+                <small *ngIf="validEmail" id="emailHelp" class="form-text text-muted">Email not recognized.</small>
+                <small *ngIf="exists" id="emailHelp" class="form-text text-muted">Friend request already
+                  sent.</small>
+                <small *ngIf="alreadyFriends" id="emailHelp" class="form-text text-muted">This person is already your friend</small>
+                <small *ngIf="success" id="emailHelp" class="form-text text-muted">Friend request sent!</small>
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-primary">
+                  <fa-icon class="icon" [icon]="faUserPlus"></fa-icon>
+                </button>
+              </div>
+            </div>
+            <div class="form-row">
+              <ul class="list-group requestsRow list-group-flush">
+                <li class="list-group-item" *ngFor="let m of (requests | async)">
+                  <div class="row userRequest">
+                    <div class="col">
+                      <span>{{m.user.username}}</span>
+                    </div>
+                    <div class="col-2 ml-auto anwserButtons">
+                      <button type="button" class="btn btn-success" (click)="confirmRequest(m.friendsListID)">
+                        <fa-icon class="icon" [icon]="faCheck"></fa-icon>
+                      </button>
+                    </div>
+                    <div class="col-2 ml-auto anwserButtons">
+                      <button type="button" class="btn btn-danger" (click)="denyRequest(m.friendsListID)">
+                        <fa-icon class="icon" [icon]="faTimes"></fa-icon>
+                      </button>
+                    </div>
+                  </div>
+
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,18 +1,14 @@
 <div class="containerDashboard">
-  <div class="row">
-    <div class="col">
-      <div class="card cardLeft">
-          <app-friends></app-friends>
+  <div class="row main">
+    <div class="col-4 cardsLeft">
+      <div class="row friends">
+        <app-friends></app-friends>
       </div>
-      <div class="card cardLeft">
-        <div class="card-body">
-            <form #logoutForm="ngForm" (ngSubmit)="logout()" name="logoutForm" #f="ngForm">
-                <p><button mat-raised-button class="buttonLogin" color="primary" type="submit">Logout</button></p>
-              </form>
-        </div>
+      <div class="row info">
+        <app-info></app-info>
       </div>
     </div>
-    <div class="col">
+    <div class="col colRight">
       <div class="card cardRight">
         <div class="card-body">
           This is some text within a card body.
