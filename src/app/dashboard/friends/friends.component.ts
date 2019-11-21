@@ -26,6 +26,7 @@ export class FriendsComponent implements OnInit {
   notSelf = false;
   success = false;
   requestCount = 0;
+  userID = parseInt(localStorage.getItem("userID"));
 
   constructor(private _friendsService: FriendsService) {
     this.requests = _friendsService.getFriendrequests()
@@ -59,23 +60,25 @@ export class FriendsComponent implements OnInit {
     this.alreadyFriends = false;
   }
 
+  refreshFriendsComponent() {
+    this.requests = this._friendsService.getFriendrequests()
+      .pipe(
+        tap(
+          t => this.requestCount = t.length
+        ))
+
+    this.friends = this._friendsService.getFriends()
+  }
+
   confirmRequest(id: number) {
     this._friendsService.confirmFriendrequest(id).subscribe(result => {
-      this.requests = this._friendsService.getFriendrequests()
-        .pipe(
-          tap(
-            t => this.requestCount = t.length
-          ))
+      this.refreshFriendsComponent();
     })
   }
 
   denyRequest(id: number) {
     this._friendsService.denyFriendrequest(id).subscribe(result => {
-      this.requests = this._friendsService.getFriendrequests()
-        .pipe(
-          tap(
-            t => this.requestCount = t.length
-          ))
+      this.refreshFriendsComponent();
     })
   }
 

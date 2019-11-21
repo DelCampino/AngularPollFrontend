@@ -14,7 +14,8 @@
         <li class="list-group-item" *ngFor="let x of (friends | async)">
           <div class="row userRequest">
             <div class="col">
-              <span>{{x.user.username}}</span>
+              <span *ngIf="x.user.userID != userID; else friend">{{x.user.username}}</span>
+              <ng-template #friend><span>{{x.friend.username}}</span></ng-template>
             </div>
           </div>
         </li>

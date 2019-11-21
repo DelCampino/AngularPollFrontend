@@ -20,11 +20,14 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { AuthGuard } from './security/guards/auth.guard';
 import { InterceptorService } from './interceptor.service';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { NewPollModule } from './new-poll/new-poll.module';
+import { NewPollComponent } from './new-poll/new-poll/new-poll.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'newPoll', component: NewPollComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -50,7 +53,8 @@ const appRoutes: Routes = [
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    DashboardModule
+    DashboardModule,
+    NewPollModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

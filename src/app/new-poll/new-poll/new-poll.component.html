@@ -1,0 +1,56 @@
+<div class="mainContainer">
+    <h1>Create new poll</h1>
+    <form [formGroup]="newPollForm" (ngSubmit)="onSubmit()">
+        <div class="form-group row">
+            <label for="name" class="col-3 col-form-label">Poll Name</label>
+            <div class="col-5">
+                <input id="name" name="name" type="text" class="form-control" formControlName="name">
+            </div>
+        </div>
+        <h3>Answers</h3>
+        <div id="answers" formArrayName="answers">
+            <div class="form-group row" *ngFor="let item of answers.controls; let textIndex=index"
+                [formGroupName]="textIndex">
+                <label for="answer" class="col-3 col-form-label">Answer {{textIndex + 1}}</label>
+                <div class="col-5">
+                    <div class="input-group">
+                        <input id="answer" name="answer" type="text" class="form-control" formControlName="text">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <button type="button" (click)="deleteAnswer()" name="-" class="btn btn-primary" [disabled]="answers?.length < 3">
+                        <fa-icon class="icon" [icon]="faTrashAlt"></fa-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="offset-3 col-5 center">
+                <button  type="button" (click)="addAnswer()" id="addAnswer" name="+" class="btn btn-primary">
+                    <fa-icon class="icon" [icon]="faPlus"></fa-icon>
+                </button>
+            </div>
+        </div>
+        <h3>Friends</h3>
+        <div class="card col-8 friendsCard">
+            <div class="form-check" formArrayName="participants"
+                *ngFor="let item of newPollForm.controls.participants.controls; let i = index">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [value]="test" [formControlName]="i">
+                    <label class="form-check-label">
+                        <span
+                            *ngIf="friendsData[i].user.userID != userID; else friend">{{friendsData[i].user.username}}</span>
+                        <ng-template #friend><span>{{friendsData[i].friend.username}}</span></ng-template>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="offset-3 col-5">
+                <button name="submit" type="submit" class="btn btn-primary" [disabled]="!newPollForm.valid || submitted">Create
+                    Poll</button>
+            </div>
+        </div>
+    </form>
+    {{ this.newPollForm.value | json }}
+</div>
