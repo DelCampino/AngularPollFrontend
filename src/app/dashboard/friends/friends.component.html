@@ -14,6 +14,7 @@
         <li class="list-group-item" *ngFor="let x of (friends | async)">
           <div class="row userRequest">
             <div class="col">
+              <fa-icon class="icon friendIcon" [icon]="faUser"></fa-icon>
               <span *ngIf="x.user.userID != userID; else friend">{{x.user.username}}</span>
               <ng-template #friend><span>{{x.friend.username}}</span></ng-template>
             </div>

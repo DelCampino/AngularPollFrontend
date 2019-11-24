@@ -3,6 +3,27 @@
 }
 
 .friendsCard {
-    padding: 10px;
-    min-height: 100px;
+    padding: 0 !important;
+    overflow-y: auto;
+    height: 200px;
+    margin-bottom: 10px;
+    :first-child {
+        border-top: hidden;
+    }
+}
+
+h1,h3 {
+    font-family: bebas, sans-serif;
+    display: inline-block;
+    padding: 5px 10px 5px 10px;
+    color: #fafafa;
+}
+
+.createPoll {
+    display: block;
+    width: 100%;
+}
+
+#addAnswer {
+    margin: auto;
 }

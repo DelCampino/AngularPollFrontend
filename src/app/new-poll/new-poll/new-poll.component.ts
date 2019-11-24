@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn, Validators, AbstractControl } from '@angular/forms';
-import { faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTrashAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FriendsService } from 'src/app/dashboard/services/friends.service';
 import { Poll } from '../models/poll.model';
 import { PollService } from '../services/poll.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-poll',
@@ -18,7 +19,7 @@ export class NewPollComponent implements OnInit {
   userID = localStorage.getItem("userID");
   submitted = false;
 
-  constructor(private fb: FormBuilder, private _friendsService: FriendsService, private _pollService: PollService) { }
+  constructor(private fb: FormBuilder, private _friendsService: FriendsService, private _pollService: PollService, private router: Router) { }
 
   ngOnInit() {
     this.newPollForm = this.fb.group({
@@ -90,6 +91,7 @@ export class NewPollComponent implements OnInit {
     );
     var newPoll = new Poll(
       this.newPollForm.value.name,
+      parseInt(localStorage.getItem("userID")),
       participants,
       this.newPollForm.value.answers
     )
@@ -103,6 +105,8 @@ export class NewPollComponent implements OnInit {
       }
     );
     this.submitted = false;
+    this.newPollForm.reset();
+    this.router.navigate(["/dashboard"]);
   }
 
 

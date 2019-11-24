@@ -1,5 +1,5 @@
 <div class="mainContainer">
-    <h1>Create new poll</h1>
+    <h1 class="bg-primary">Create new poll</h1>
     <form [formGroup]="newPollForm" (ngSubmit)="onSubmit()">
         <div class="form-group row">
             <label for="name" class="col-3 col-form-label">Poll Name</label>
@@ -7,7 +7,7 @@
                 <input id="name" name="name" type="text" class="form-control" formControlName="name">
             </div>
         </div>
-        <h3>Answers</h3>
+        <h3 class="bg-primary">Answers</h3>
         <div id="answers" formArrayName="answers">
             <div class="form-group row" *ngFor="let item of answers.controls; let textIndex=index"
                 [formGroupName]="textIndex">
@@ -18,7 +18,8 @@
                     </div>
                 </div>
                 <div class="col-3">
-                    <button type="button" (click)="deleteAnswer()" name="-" class="btn btn-primary" [disabled]="answers?.length < 3">
+                    <button type="button" (click)="deleteAnswer()" name="-" class="btn btn-primary"
+                        [disabled]="answers?.length < 3">
                         <fa-icon class="icon" [icon]="faTrashAlt"></fa-icon>
                     </button>
                 </div>
@@ -26,14 +27,14 @@
         </div>
         <div class="form-group row">
             <div class="offset-3 col-5 center">
-                <button  type="button" (click)="addAnswer()" id="addAnswer" name="+" class="btn btn-primary">
+                <button type="button" (click)="addAnswer()" id="addAnswer" name="+" class="btn btn-primary">
                     <fa-icon class="icon" [icon]="faPlus"></fa-icon>
                 </button>
             </div>
         </div>
-        <h3>Friends</h3>
-        <div class="card col-8 friendsCard">
-            <div class="form-check" formArrayName="participants"
+        <h3 class="bg-primary">Friends</h3>
+        <div class="card col-8 friendsCard list-group list-group-flush">
+            <div class="form-check list-group-item" formArrayName="participants"
                 *ngFor="let item of newPollForm.controls.participants.controls; let i = index">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" [value]="test" [formControlName]="i">
@@ -45,12 +46,10 @@
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="offset-3 col-5">
-                <button name="submit" type="submit" class="btn btn-primary" [disabled]="!newPollForm.valid || submitted">Create
-                    Poll</button>
-            </div>
+        <div>
+            <button name="submit" type="submit" class="col-8 btn createPoll btn-primary"
+                [disabled]="!newPollForm.valid || submitted">Create
+                Poll</button>
         </div>
     </form>
-    {{ this.newPollForm.value | json }}
 </div>

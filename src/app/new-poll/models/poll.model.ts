@@ -1,6 +1,7 @@
 export class Poll {
     constructor(
         public name: String,
+        public creatorID: number,
         public participants: participant[],
         public answers: votes[]
     ) {}

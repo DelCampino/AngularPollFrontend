@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faUserPlus, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faUserPlus, faCheck, faTimes, faUser } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
 import { FriendsService } from '../services/friends.service';
 import { Friendrequest } from '../models/friendrequest.model';
@@ -27,6 +27,7 @@ export class FriendsComponent implements OnInit {
   success = false;
   requestCount = 0;
   userID = parseInt(localStorage.getItem("userID"));
+  faUser = faUser;
 
   constructor(private _friendsService: FriendsService) {
     this.requests = _friendsService.getFriendrequests()
