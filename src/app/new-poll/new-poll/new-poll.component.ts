@@ -98,7 +98,6 @@ export class NewPollComponent implements OnInit {
     console.log(newPoll)
     this._pollService.addPoll(newPoll).subscribe(
       result => {
-        console.log("yay")
       },
       error => {
         console.log(error)

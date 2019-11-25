@@ -1,0 +1,33 @@
+.card {
+    height: 100%;
+    position: relative;
+}
+
+.row {
+    margin: 0 !important;
+}
+
+.newPollButton {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    form {
+        width: 100%;
+        button {
+            width: 100%;
+        }
+    }
+}
+
+.title {
+    width: 70% !important;
+}
+
+.poll {
+    cursor: pointer;
+}
+
+.poll:hover {
+    background: #53b1fd;
+    color: white;
+}

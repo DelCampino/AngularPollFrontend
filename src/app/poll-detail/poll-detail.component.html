@@ -1,0 +1,41 @@
+<div class="mainContainer">
+    <h1 class="bg-primary">{{chosenPoll.name}}</h1>
+    <div class="row">
+        <div class="col">
+            <ul class="list-group">
+                <li class="list-group-item answerOption" *ngFor="let a of chosenPoll.answers"
+                    style="--test: calcPercentage(a.votes.length)%">
+                    <div class="behindDiv" [style.width.%]="calcPercentage(a.votes.length)">
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{a.text}}
+                        </div>
+                        <div class="col-2 buttonCol">
+                            <button *ngIf="!alreadyVoted; else percentage" [disabled]="submitted" type="button"
+                                data-target="#exampleModal" data-toggle="modal" class="btn btn-primary"
+                                (click)="vote(a.answerID)">Vote!</button>
+                        </div>
+                        <ng-template #percentage>
+                            <p>
+                                {{calcPercentage(a.votes.length)}} %
+                            </p>
+                        </ng-template>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-4">
+            <div class="card pollInfo">
+                <ul class="list-group list-group-flush">
+                    <div *ngFor="let p of chosenPoll.participants" class="font-weight-bold">
+                        <p *ngIf="p.user.userID == chosenPoll.creatorID">Created by: {{p.user.username}}</p>
+                    </div>
+                    <div *ngFor="let p of chosenPoll.participants">
+                        <p *ngIf="p.user.userID != chosenPoll.creatorID">{{p.user.username}}</p>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

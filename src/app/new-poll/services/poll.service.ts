@@ -11,6 +11,7 @@ export class PollService {
   constructor(private _httpClient: HttpClient) { }
   
   addPoll(poll: Poll): Observable<Poll> {
+    poll.participants.push({"userID": parseInt(localStorage.getItem("userID"))})
     return this._httpClient.post<Poll>("https://localhost:5001/api/Poll", poll);
   }
 }

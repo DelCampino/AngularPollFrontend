@@ -22,12 +22,14 @@ import { InterceptorService } from './interceptor.service';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { NewPollModule } from './new-poll/new-poll.module';
 import { NewPollComponent } from './new-poll/new-poll/new-poll.component';
+import { PollDetailComponent } from './poll-detail/poll-detail.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'newPoll', component: NewPollComponent, canActivate: [AuthGuard] }
+  { path: 'newPoll', component: NewPollComponent, canActivate: [AuthGuard] },
+  { path: 'pollDetail', component: PollDetailComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -36,6 +38,7 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     MustMatchDirective,
+    PollDetailComponent,
 
   ],
   imports: [

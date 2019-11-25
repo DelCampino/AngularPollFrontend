@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PollService } from './poll.service';
+import { VoteService } from './vote.service';
 
-describe('PollServiceService', () => {
+describe('VoteService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: PollService = TestBed.get(PollService);
+    const service: VoteService = TestBed.get(VoteService);
     expect(service).toBeTruthy();
   });
 });

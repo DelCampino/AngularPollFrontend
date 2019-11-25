@@ -1,7 +1,51 @@
 <div class="card">
-    <form (ngSubmit)="newPoll()" name="newPollForm">
-        <button type="submit" class="btn btn-primary">
-            <fa-icon class="icon" [icon]="faPlus"></fa-icon>
-        </button>
-    </form>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Created polls</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let m of createdPolls" class="poll" (click)="showDetailPoll(m.pollID)">
+                    <td class="title">{{m.name}}</td>
+                    <!--<td>{{getVoteCount(m.answers)}} / {{m.participants.length}}</td> -->
+                    <td>test</td>
+                    <td>
+                        <fa-icon class="icon" [icon]="faArrowRight"></fa-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Invited polls</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let m of myPolls.myPolls"  class="poll" (click)="showDetailPoll(m.poll.pollID)">
+                    <td class="title" *ngIf="m.poll.creatorID != userID">{{m.poll.name}}</td>
+                    <!--<td>{{getVoteCount(m.poll.answers)}} / {{m.poll.participants.length}}</td> -->
+                    <td *ngIf="m.poll.creatorID != userID">test</td>
+                    <td *ngIf="m.poll.creatorID != userID">
+                        <fa-icon class="icon" [icon]="faArrowRight"></fa-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row newPollButton">
+        <form (ngSubmit)="newPoll()" name="newPollForm">
+            <button type="submit" class="btn btn-primary">
+                <fa-icon class="icon" [icon]="faPlus"></fa-icon>
+            </button>
+        </form>
+    </div>
 </div>
