@@ -1,9 +1,10 @@
 <div class="card">
-    <div class="row">
+    <div *ngIf="createdPolls != null" class="row">
         <table class="table">
             <thead>
-                <tr>
+                <tr class="titleRow">
                     <th scope="col">Created polls</th>
+                    <th><fa-icon class="icon" [icon]="faVoteYea"></fa-icon></th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -11,8 +12,8 @@
             <tbody>
                 <tr *ngFor="let m of createdPolls" class="poll" (click)="showDetailPoll(m.pollID)">
                     <td class="title">{{m.name}}</td>
-                    <!--<td>{{getVoteCount(m.answers)}} / {{m.participants.length}}</td> -->
-                    <td>test</td>
+                    <td>{{getVoteCount(m.answers)}} / {{m.participants.length}}</td>
+                    <td></td>
                     <td>
                         <fa-icon class="icon" [icon]="faArrowRight"></fa-icon>
                     </td>
@@ -20,20 +21,21 @@
             </tbody>
         </table>
     </div>
-    <div class="row">
+    <div *ngIf="myPolls != null" class="row">
         <table class="table">
             <thead>
-                <tr>
-                    <th scope="col">Invited polls</th>
+                <tr class="titleRow">
+                    <th scope="col" >Invited polls</th>
+                    <th><fa-icon class="icon" [icon]="faVoteYea"></fa-icon></th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let m of myPolls.myPolls"  class="poll" (click)="showDetailPoll(m.poll.pollID)">
-                    <td class="title" *ngIf="m.poll.creatorID != userID">{{m.poll.name}}</td>
-                    <!--<td>{{getVoteCount(m.poll.answers)}} / {{m.poll.participants.length}}</td> -->
-                    <td *ngIf="m.poll.creatorID != userID">test</td>
+                    <td *ngIf="m.poll.creatorID != userID" class="title">{{m.poll.name}}</td>
+                    <td *ngIf="m.poll.creatorID != userID">{{getVoteCount(m.poll.answers)}} / {{m.poll.participants.length}}</td>
+                    <td *ngIf="m.poll.creatorID != userID"></td>
                     <td *ngIf="m.poll.creatorID != userID">
                         <fa-icon class="icon" [icon]="faArrowRight"></fa-icon>
                     </td>

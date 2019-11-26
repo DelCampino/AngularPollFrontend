@@ -3,25 +3,32 @@
     <div class="row">
         <div class="col">
             <ul class="list-group">
-                <li class="list-group-item answerOption" *ngFor="let a of chosenPoll.answers"
-                    style="--test: calcPercentage(a.votes.length)%">
-                    <div class="behindDiv" [style.width.%]="calcPercentage(a.votes.length)">
+                <li class="list-group-item answerOption" *ngFor="let a of chosenPoll.answers">
+                    <div *ngIf="alreadyVoted" class="behindDiv" [style.width.%]="calcPercentage(a.votes.length)">
                     </div>
                     <div class="row">
                         <div class="col">
-                            {{a.text}}
+                            <div class="row">
+                                {{a.text}}
+                            </div>
+                            <div class="row">
+                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="{{ participants[v.userID] }}"
+                                *ngFor="let v of a.votes">
+                                    <div *ngIf="alreadyVoted" class="numberCircle">{{ participantsChar[v.userID] }}</div>
+                                </span>
+                            </div>
                         </div>
-                        <div class="col-2 buttonCol">
-                            <button *ngIf="!alreadyVoted; else percentage" [disabled]="submitted" type="button"
-                                data-target="#exampleModal" data-toggle="modal" class="btn btn-primary"
-                                (click)="vote(a.answerID)">Vote!</button>
+                            <div class="col-2 buttonCol">
+                                <button *ngIf="!alreadyVoted; else percentage" [disabled]="submitted" type="button"
+                                    data-target="#exampleModal" data-toggle="modal" class="btn btn-primary"
+                                    (click)="vote(a.answerID)">Vote!</button>
+                            </div>
+                            <ng-template #percentage>
+                                <h3 class="text-dark">
+                                    {{calcPercentage(a.votes.length)}} %
+                                </h3>
+                            </ng-template>
                         </div>
-                        <ng-template #percentage>
-                            <p>
-                                {{calcPercentage(a.votes.length)}} %
-                            </p>
-                        </ng-template>
-                    </div>
                 </li>
             </ul>
         </div>

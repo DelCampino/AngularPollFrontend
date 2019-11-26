@@ -18,8 +18,11 @@ h1,h3 {
 }
 
 .answerOption {
-    min-height: 50px;
+    min-height: 90px;
     color: black;
+    > .row {
+        padding: 10px;
+    }
 }
 
 .behindDiv {
@@ -33,4 +36,19 @@ h1,h3 {
     -webkit-animation: filler 2s ease-in-out;
     -moz-animation: filler 2s ease-in-out;
     animation: filler 2s ease-in-out;
+}
+
+.numberCircle {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    margin-right: 5px;
+    margin-top: 10px;
+    padding-top: 5px;
+
+    background: #007bff;
+    border: 2px solid white;
+    color: white;
+    text-align: center;
+    font-weight: bold;
 }

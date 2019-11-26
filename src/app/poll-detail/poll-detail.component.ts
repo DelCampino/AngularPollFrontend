@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { PollsService } from '../dashboard/services/polls.service';
 import { VoteService } from './services/vote.service';
 import { Vote } from './models/vote.model';
-import { Poll } from '../poll-detail/models/poll.model';
 
 @Component({
   selector: 'app-poll-detail',
@@ -11,21 +10,16 @@ import { Poll } from '../poll-detail/models/poll.model';
   styleUrls: ['./poll-detail.component.scss']
 })
 export class PollDetailComponent implements OnInit {
-  chosenPoll = [];
+  chosenPoll: any;
   submitted = false;
   alreadyVoted;
   totalVotes = 0;
+  participants = [];
+  participantsChar = [];
 
   constructor(private router: Router, private _pollsService: PollsService, private _voteService: VoteService) {
     this.alreadyVoted = false;
-    this.getCurrentPoll();
-  }
-
-  ngOnInit() {
-  }
-
-  getCurrentPoll() {
-    this._pollsService.chosenPoll.subscribe(e => {
+    this._pollsService.chosenPoll.subscribe((e: any) => {
       this.chosenPoll = e;
       this.chosenPoll.answers.forEach(answer => {
         answer.votes.forEach(vote => {
@@ -34,19 +28,31 @@ export class PollDetailComponent implements OnInit {
           }
           this.totalVotes++;
         })
-      });
-      console.log(this.alreadyVoted);
+      })
+      this.chosenPoll.participants.forEach((p) => {
+        this.participants[p.user.userID] = p.user.username;
+        this.participantsChar[p.user.userID] = (p.user.username.charAt(0) + p.user.username.charAt(1));
+      })
+
+    });
+  }
+
+  ngOnInit() {
+  }
+  refreshCurrentPoll() {
+    this._pollsService.getPoll(this.chosenPoll.pollID).subscribe(e => {
+      this._pollsService.chosenPoll.next(e);
     })
   }
 
   calcPercentage(votes: number) {
-    return (votes/this.totalVotes*100);
+    return (Math.round((votes / this.totalVotes * 100)));
   }
 
   vote(answerID: number) {
     this.submitted = true;
     this._voteService.addVote(new Vote(parseInt(localStorage.getItem("userID")), answerID)).subscribe(result => {
-      this.getCurrentPoll();
+      this.refreshCurrentPoll();
     }, error => {
       console.log(error);
     })

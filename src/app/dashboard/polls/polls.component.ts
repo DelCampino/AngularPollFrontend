@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { faPlus, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faArrowRight, faVoteYea } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { PollsService } from '../services/polls.service';
 import { votes } from 'src/app/new-poll/models/poll.model';
@@ -14,6 +14,7 @@ import { BehaviorSubject } from 'rxjs';
 export class PollsComponent implements OnInit {
   faPlus = faPlus;
   faArrowRight = faArrowRight;
+  faVoteYea = faVoteYea;
   myPolls = [];
   createdPolls = [];
   selectedPoll: [];
@@ -51,12 +52,12 @@ export class PollsComponent implements OnInit {
     })
   }
 
-  /*   getVoteCount(answers: []) {
+     getVoteCount(answers: any) {
       var votes = 0;
       answers.forEach(e =>
       votes += e.votes.length
         ), this
         return votes;
-    } */
+    }
 
 }
