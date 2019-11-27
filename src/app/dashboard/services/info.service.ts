@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InfoService {
-
+  refreshInfo = new BehaviorSubject(false);
+  
   constructor(private _httpClient: HttpClient) { 
   }
 

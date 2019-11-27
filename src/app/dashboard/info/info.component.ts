@@ -3,6 +3,7 @@ import { AuthenticateService } from 'src/app/authenticate.service';
 import { Router } from '@angular/router';
 import { InfoService } from '../services/info.service';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Component({
   selector: 'app-info',
@@ -16,7 +17,12 @@ export class InfoComponent implements OnInit {
   polls = 0;
   faInfoCircle = faInfoCircle;
 
+
   constructor(private _authenticateService: AuthenticateService, private _infoService: InfoService, private router: Router) {
+
+  }
+
+  ngOnInit() {
     this._infoService.getPollCount().subscribe(result => {
       this.polls = result;
     });
@@ -30,10 +36,7 @@ export class InfoComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
 
-  
   logout() {
     this._authenticateService.logout();
     this.submitted = false;
