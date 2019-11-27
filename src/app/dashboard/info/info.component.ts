@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticateService } from 'src/app/authenticate.service';
 import { Router } from '@angular/router';
+import { InfoService } from '../services/info.service';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-info',
@@ -9,8 +11,24 @@ import { Router } from '@angular/router';
 })
 export class InfoComponent implements OnInit {
   submitted = false;
+  votes = 0;
+  users = 0;
+  polls = 0;
+  faInfoCircle = faInfoCircle;
 
-  constructor(private _authenticateService: AuthenticateService, private router: Router) { }
+  constructor(private _authenticateService: AuthenticateService, private _infoService: InfoService, private router: Router) {
+    this._infoService.getPollCount().subscribe(result => {
+      this.polls = result;
+    });
+
+    this._infoService.getUserCount().subscribe(result => {
+      this.users = result;
+    });
+
+    this._infoService.getVoteCount().subscribe(result => {
+      this.votes = result;
+    });
+  }
 
   ngOnInit() {
   }
