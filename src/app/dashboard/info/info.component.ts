@@ -19,21 +19,23 @@ export class InfoComponent implements OnInit {
 
 
   constructor(private _authenticateService: AuthenticateService, private _infoService: InfoService, private router: Router) {
-
+    this._infoService.refreshInfo.subscribe(e=> {
+      this._infoService.getPollCount().subscribe(result => {
+        this.polls = result;
+      });
+  
+      this._infoService.getUserCount().subscribe(result => {
+        this.users = result;
+      });
+  
+      this._infoService.getVoteCount().subscribe(result => {
+        this.votes = result;
+      });
+      })
   }
 
   ngOnInit() {
-    this._infoService.getPollCount().subscribe(result => {
-      this.polls = result;
-    });
 
-    this._infoService.getUserCount().subscribe(result => {
-      this.users = result;
-    });
-
-    this._infoService.getVoteCount().subscribe(result => {
-      this.votes = result;
-    });
   }
 
 

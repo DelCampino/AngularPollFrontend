@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class InfoService {
-  refreshInfo = new BehaviorSubject(false);
+  refreshInfo = new BehaviorSubject(true);
   
   constructor(private _httpClient: HttpClient) { 
   }

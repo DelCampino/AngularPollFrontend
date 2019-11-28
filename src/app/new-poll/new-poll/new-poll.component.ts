@@ -5,6 +5,7 @@ import { FriendsService } from 'src/app/dashboard/services/friends.service';
 import { Poll } from '../models/poll.model';
 import { PollService } from '../services/poll.service';
 import { Router } from '@angular/router';
+import { InfoService } from 'src/app/dashboard/services/info.service';
 
 @Component({
   selector: 'app-new-poll',
@@ -19,7 +20,7 @@ export class NewPollComponent implements OnInit {
   userID = localStorage.getItem("userID");
   submitted = false;
 
-  constructor(private fb: FormBuilder, private _friendsService: FriendsService, private _pollService: PollService, private router: Router) { }
+  constructor(private _infoService: InfoService, private fb: FormBuilder, private _friendsService: FriendsService, private _pollService: PollService, private router: Router) { }
 
   ngOnInit() {
     this.newPollForm = this.fb.group({
@@ -105,6 +106,7 @@ export class NewPollComponent implements OnInit {
     );
     this.submitted = false;
     this.newPollForm.reset();
+    this._infoService.refreshInfo.next(true);
     this.router.navigate(["/dashboard"]);
   }
 

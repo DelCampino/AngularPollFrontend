@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PollsService } from '../dashboard/services/polls.service';
 import { VoteService } from './services/vote.service';
 import { Vote } from './models/vote.model';
+import { InfoService } from '../dashboard/services/info.service';
 
 @Component({
   selector: 'app-poll-detail',
@@ -17,7 +18,7 @@ export class PollDetailComponent implements OnInit {
   participants = [];
   participantsChar = [];
 
-  constructor(private router: Router, private _pollsService: PollsService, private _voteService: VoteService) {
+  constructor(private router: Router, private _pollsService: PollsService, private _voteService: VoteService, private _infoService: InfoService) {
     this.alreadyVoted = false;
     this._pollsService.chosenPoll.subscribe((e: any) => {
       this.chosenPoll = e;
@@ -53,6 +54,7 @@ export class PollDetailComponent implements OnInit {
     this.submitted = true;
     this._voteService.addVote(new Vote(parseInt(localStorage.getItem("userID")), answerID)).subscribe(result => {
       this.refreshCurrentPoll();
+      this._infoService.refreshInfo.next(true);
     }, error => {
       console.log(error);
     })
