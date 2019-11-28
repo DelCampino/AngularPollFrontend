@@ -5,6 +5,7 @@ import { PollsService } from '../services/polls.service';
 import { votes } from 'src/app/new-poll/models/poll.model';
 import { PollDetailComponent } from 'src/app/poll-detail/poll-detail.component';
 import { BehaviorSubject } from 'rxjs';
+import { InfoService } from '../services/info.service';
 
 @Component({
   selector: 'app-polls',
@@ -22,7 +23,8 @@ export class PollsComponent implements OnInit {
   selectedPoll: [];
   userID = localStorage.getItem("userID");
 
-  constructor(private router: Router, private _pollsService: PollsService) {
+  constructor(private router: Router, private _pollsService: PollsService, private _infoService: InfoService) {
+    this._infoService.refreshInfo.subscribe(e=> {
     this._pollsService.getUserPolls().subscribe(
       result => {
         this.myPolls = result;
@@ -36,6 +38,7 @@ export class PollsComponent implements OnInit {
       }, error => {
         console.log(error);
       })
+    })
   }
 
   ngOnInit() {
