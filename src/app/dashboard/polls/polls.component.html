@@ -12,7 +12,7 @@
             <tbody>
                 <tr *ngFor="let m of createdPolls" class="poll" (click)="showDetailPoll(m.pollID)">
                     <td class="title">{{m.name}}</td>
-                    <td>{{getVoteCount(m.answers)}} / {{m.participants.length + 1}}</td>
+                    <td>{{getVoteCount(m.answers)}} / {{m.participants.length}}</td>
                     <td><fa-icon *ngIf="userVoted(m.answers)" class="icon" [icon]="faCheck"></fa-icon></td>
                     <td>
                         <fa-icon class="icon" [icon]="faArrowRight"></fa-icon>

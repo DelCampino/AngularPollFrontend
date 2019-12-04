@@ -21,6 +21,7 @@ export class PollDetailComponent implements OnInit {
   constructor(private router: Router, private _pollsService: PollsService, private _voteService: VoteService, private _infoService: InfoService) {
     this.alreadyVoted = false;
     this._pollsService.chosenPoll.subscribe((e: any) => {
+      this.totalVotes = 0;
       this.chosenPoll = e;
       this.chosenPoll.answers.forEach(answer => {
         answer.votes.forEach(vote => {
